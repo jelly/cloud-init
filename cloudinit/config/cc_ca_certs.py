@@ -25,7 +25,7 @@ can be removed from the system with the configuration option
 
 **Module frequency:** per instance
 
-**Supported distros:** alpine, debian, ubuntu, rhel
+**Supported distros:** arch linux, alpine, debian, ubuntu, rhel
 
 **Config keys**::
 
@@ -58,11 +58,18 @@ DISTRO_OVERRIDES = {
         'ca_cert_config': None,
         'ca_cert_system_path': '/etc/pki/ca-trust/',
         'ca_cert_update_cmd': ['update-ca-trust']
+    },
+    'arch': {
+        'ca_cert_path': '/usr/share/ca-certificates/trust-source/',
+        'ca_cert_filename': 'anchors/cloud-init-ca-certs.crt',
+        'ca_cert_config': None,
+        'ca_cert_system_path': '/etc/ca-certificates/trust-source/anchors',
+        'ca_cert_update_cmd': ['update-ca-trust']
     }
 }
 
 
-distros = ['alpine', 'debian', 'ubuntu', 'rhel']
+distros = ['arch', 'alpine', 'debian', 'ubuntu', 'rhel']
 
 
 def _distro_ca_certs_configs(distro_name):
